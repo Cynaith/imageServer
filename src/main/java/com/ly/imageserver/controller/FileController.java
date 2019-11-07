@@ -31,7 +31,7 @@ public class FileController {
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
 //        String filePath = "/Users/ly/IdeaProjects/imageServer/src/main/resources/static/imgs/";
-       String filePath = "/root/home/nginx/iMart/images";
+       String filePath = "/root/home/nginx/iMart/images/";
         fileName = UUID.randomUUID() + suffixName;
         File dest = new File(filePath + fileName);
         if (!dest.getParentFile().exists()) {
