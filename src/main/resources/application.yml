@@ -2,6 +2,10 @@ server:
   port: 8890
 
 spring:
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 100MB
   jpa:
     open-in-view: false
   resources:
