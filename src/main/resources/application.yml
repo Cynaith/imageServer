@@ -10,3 +10,4 @@ spring:
     url: jdbc:mysql://47.101.171.252:3306/imagesServer?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: admin
+
