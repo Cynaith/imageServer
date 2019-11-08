@@ -7,36 +7,110 @@
 </head>
 <body>
 
-<table style="height: 100%" id="demo" lay-filter="test"></table>
+<table style="height: 100%" id="demo" lay-filter="test">
+
+</table>
 
 <script src="../layui/layui.js"></script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">查看</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">预留框</a>
+</script>
 <script>
-    layui.use('table', function(){
+    layui.use('table', function () {
         var table = layui.table;
 
         //第一个实例
         table.render({
             elem: '#demo'
-            ,height: 680
-            ,url: 'http://localhost:8890/getImages' //数据接口
-            ,page: true //开启分页
-            ,limit:15
-            ,limits:[15,20,30]
-            ,cols: [[ //表头
-                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-                ,{field: 'username', title: '用户名', width:200}
-                ,{field: 'url', title: '图片地址', width: 600}
-                ,{field: 'imgname', title: '图片名', width: 250}
-
+            , height: 680
+            , url: 'http://47.101.171.252:8890/getImages' //数据接口
+            , page: true //开启分页
+            , limit: 15
+            , limits: [15, 20, 30]
+            , cols: [[ //表头
+                {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
+                , {field: 'username', title: '用户名', width: 150}
+                , {field: 'url', title: '图片地址', width: 550}
+                , {field: 'imgname', title: '图片名', width: 200}
+                , {field: '', title: '操作', width: 150, toolbar: '#barDemo'}
             ]]
-            ,parseData: function(res){ //res 即为原始返回的数据
-            return {
-                success:true,
-                code:res.code,
-                data: res.data.content, //解析数据列表
-                count:res.data.totalElements
-            };
-        }
+            , parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    success: true,
+                    code: res.code,
+                    data: res.data.content, //解析数据列表
+                    count: res.data.totalElements
+                };
+            }
+        });
+
+        //test 为table lay-filter属性值
+        //获取点击事件
+        table.on('tool(test)', function (obj) {
+            // 浏览器窗口width height均/4 设置为图片展示的左上角坐标
+            var x = document.documentElement.clientWidth / 4;
+            var y = document.documentElement.clientHeight / 4;
+// 图片的src
+            var src = obj.data.url;
+
+// 图片宽高/3 即缩放为原图片大小的1/3
+//             var width = obj.naturalWidth/3;
+//             var height = obj.naturalHeight/3;
+            var edit = obj.data;
+            var layEvent = obj.event;
+            var img_show = "<img width='500px' height='600px' border='0' style='background-repeat:no-repeat' src='" + src + "' />";
+            if (layEvent == 'edit') {
+                layer.open({
+                    content: img_show,
+                    type: 1,
+                    offset: ["10px", "10px"],
+                    title: false,
+                    area: ['auto', 'auto']
+                })
+            }
+        })
+        table.on('rowDouble(test)', function (obj) {
+            // 浏览器窗口width height均/4 设置为图片展示的左上角坐标
+            var x = document.documentElement.clientWidth / 4;
+            var y = document.documentElement.clientHeight / 4;
+// 图片的src
+            var src = obj.data.url;
+
+// 图片宽高/3 即缩放为原图片大小的1/3
+//             var width = obj.naturalWidth/3;
+//             var height = obj.naturalHeight/3;
+            var edit = obj.data;
+            var layEvent = obj.event;
+            var img_show = "<img width='500px' height='600px' border='0' style='background-repeat:no-repeat' src='" + src + "' />";
+            layer.open({
+                content: img_show,
+                type: 1,
+                offset: ["10px", "10px"],
+                title: false,
+                area: ['auto', 'auto']
+            })
+        });
+        table.on('row(test)', function (obj) {
+            // 浏览器窗口width height均/4 设置为图片展示的左上角坐标
+            var x = document.documentElement.clientWidth / 4;
+            var y = document.documentElement.clientHeight / 4;
+// 图片的src
+            var src = obj.data.url;
+
+// 图片宽高/3 即缩放为原图片大小的1/3
+//             var width = obj.naturalWidth/3;
+//             var height = obj.naturalHeight/3;
+            var edit = obj.data;
+            var layEvent = obj.event;
+            var img_show = "<img width='500px' height='600px' border='0' style='background-repeat:no-repeat' src='" + src + "' />";
+            layer.open({
+                content: img_show,
+                type: 1,
+                offset: ["10px", "10px"],
+                title: false,
+                area: ['auto', 'auto']
+            })
         });
 
     });
