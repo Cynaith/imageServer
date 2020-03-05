@@ -11,7 +11,6 @@ spring:
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
   datasource:
-    url: jdbc:mysql://localhost:3306/imagesServer?useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: ly19980527
+    url: jdbc:mysql://47.101.171.252:3306/imagesServer?useUnicode=true&characterEncoding=UTF-8
+
 
